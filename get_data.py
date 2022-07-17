@@ -1,3 +1,4 @@
+import os
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select, WebDriverWait
 from selenium.webdriver.common.by import By
@@ -30,8 +31,14 @@ def iterate_through_cities(driver):
         WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.NAME, "desk")))
 
 def get_data():
-    driver = webdriver.Chrome()
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(chrome_options=chrome_options)
+
     driver.get(URL)
     res = iterate_through_cities(driver)
     driver.quit()
+    return res
 

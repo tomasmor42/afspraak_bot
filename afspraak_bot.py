@@ -13,7 +13,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def set_reminder(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     print("Reminder is set")
     chat_id = update.effective_message.chat_id
-    context.job_queue.run_repeating(reminder, 900, chat_id=chat_id)
+    context.job_queue.run_repeating(reminder, 300, chat_id=chat_id)
  
 async def reminder(context: ContextTypes.DEFAULT_TYPE) -> None:
     job = context.job
